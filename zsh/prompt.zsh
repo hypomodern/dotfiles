@@ -61,7 +61,21 @@ battery_status() {
   fi
 }
 
-export PROMPT=$'\n$(battery_status)$(directory_name)$(git_dirty) ⁉ '
+virtual_env() {
+  if [ -v VIRTUAL_ENV ]
+  then
+    echo "(`basename \"$VIRTUAL_ENV\"`) "
+  fi
+}
+
+ruby_status() {
+  if [ -f ".ruby-version" ]
+  then
+    echo "%{$fg[white]%}[%{$fg[red]%}`~/.rvm/bin/rvm-prompt i v g`%{$fg[white]%}]%{$reset_color%} "
+  fi
+}
+
+export PROMPT=$'\n$(battery_status)$(virtual_env)$(ruby_status)$(directory_name)$(git_dirty) ⁉ '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }

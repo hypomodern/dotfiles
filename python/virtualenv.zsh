@@ -1,5 +1,6 @@
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 wrapsource=`which virtualenvwrapper_lazy.sh`
 
